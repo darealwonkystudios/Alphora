@@ -4,7 +4,6 @@ def sma_crossover(symbol, short_window=5, long_window=20, bar_time_len="5 mins")
     duration = calc_duration(long_window, bar_time_len)
     df = get_historical_prices(symbol, duration=duration, barSize=bar_time_len)
 
-
     closes = df['close']
     short_sma = closes.tail(short_window).mean()
     long_sma = closes.tail(long_window).mean()
@@ -13,7 +12,7 @@ def sma_crossover(symbol, short_window=5, long_window=20, bar_time_len="5 mins")
         place_order(symbol, "buy", 1)
     elif short_sma < long_sma:
         place_order(symbol, "sell", 1)
-    print("polling.")
+
 # --- Bollinger Bands Reversion ---
 def bollinger_reversion(symbol, window=20, num_std=2, bar_time_len="5 mins"):
     duration = calc_duration(window, bar_time_len)
@@ -169,4 +168,5 @@ def get_price(symbol):
 
 def calc_duration(window, bar_time_len):
     # Calculates and returns the appropriate duration string
+
     pass
